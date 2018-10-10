@@ -20,13 +20,32 @@ class Gerador extends React.Component {
             evento: null,
             listafuncoes: funcoes,
             funcoescheck: [],
+            editar:false,
+            id:'',
         }
         this.changueselect = this.changueselect.bind(this);
         this.selecionaFuncao = this.selecionaFuncao.bind(this);
         this.Salvar = this.Salvar.bind(this);
+        this.Salvar2 = this.Salvar2.bind(this);
         this.changue = this.changue.bind(this);
         this.editar = this.editar.bind(this);
         this.excluir = this.excluir.bind(this);
+    }
+    Salvar2(event){
+            let temporario = this.state.listadecargos;
+            temporario[this.state.id].Name = this.state.Name;
+            temporario[this.state.id].Description = this.state.Description;
+            temporario[this.state.id].functions = this.state.funcoescheck;
+            this.setState({
+                listadecargos: temporario,
+                Name:'',
+                Description:'',
+                funcoescheck:[],
+                editar:false,
+                Page: 'Lista',
+            })
+                
+        
     }
     editar(event){
         let temporario = this.state.listadecargos[event];
@@ -34,6 +53,8 @@ class Gerador extends React.Component {
                 Name: temporario.Name,
                 Description: temporario.Description,
                 Page:'Novo',
+                editar:true,
+                id:event,
         })
     }
     excluir(event){
@@ -87,8 +108,13 @@ class Gerador extends React.Component {
         
     }
     changueselect(event) {
-        this.setState({ evento: event });
-        console.log(`Option selected:`,typeof( event),event.target.value);
+        
+        let listatemporariadfuncionarios = this.state.list;
+        listatemporariadfuncionarios[event.target.value[2]].officialPosition = this.state.listadecargos[event.target.value[0]];
+        this.setState({
+            list:listatemporariadfuncionarios,
+        }) 
+        
     }
     render() {
         if (this.state.Page === 'Lista') {
@@ -126,11 +152,15 @@ class Gerador extends React.Component {
                                                     <div className="form-group">
 
                                                         <select className="form-control" style={{ height: 47 + 'px' }} id="exampleFormControlSelect2" onChange={this.changueselect}>
-                                                            <option>{findAdult.officialPosition.Name}</option>
+                                                           
                                                             {this.state.listadecargos.map((cargos, indice1) => {
+                                                                if(findAdult.officialPosition.Name === cargos.Name){
+                                                                    return(
+                                                                    <option key={indice1 + 1} name='ddddd' adulto={indice1} value={[indice1 , indice]} selected>{this.state.listadecargos[indice1].Name}</option>);
+                                                                }else{
                                                                 return (
-                                                                    <option key={indice1 + 1} value={indice1}>{cargos.Name}</option>
-                                                                );
+                                                                    <option key={indice1 + 1} name='ddddd' value={[indice1 , indice]}>{cargos.Name}</option>
+                                                                );}
                                                             })}
                                                         </select>
                                                     </div>
@@ -186,7 +216,7 @@ class Gerador extends React.Component {
                                 </tbody>
                             </table>
                         </div>
-                        <button className="btn btn-md botao botaoAvançar" onClick={() => this.setState({ Page: 'Novo' })}>
+                        <button className="btn btn-md botao botaoAvançar" onClick={() => this.setState({ Page: 'Novo'})}>
                             Criar Novo Cargo
                                 </button>
                         <button className="btn btn-md botao botaoAvançar" onClick={() => this.setState({ Page: 'Lista' })}>Voltar</button>
@@ -220,7 +250,7 @@ class Gerador extends React.Component {
                                 </div>
                                 <div className="form-group">
                                     <div className="row">
-                                        <div className="col-md-6 col-sm-12 col-xs-12">
+                                        <div className="col-md-12 col-sm-12 col-xs-12">
                                             <h3 className="inner-tittle" >Funçoes</h3>
                                             <table className="table table-hover">
                                                 <thead className="text-center">
@@ -253,7 +283,8 @@ class Gerador extends React.Component {
                             <br></br>
                             <div className="text-center">
                                 <a className="btn btn-md botao" href="/">Cancelar</a>
-                                <button className="btn btn-md botao botaoAvançar" onClick={this.Salvar}>Salvar</button>
+                                {!this.state.editar &&(<button className="btn btn-md botao botaoAvançar" onClick={this.Salvar}>Salvar</button>)}
+                                {this.state.editar &&(<button className="btn btn-md botao botaoAvançar" onClick={this.Salvar2}>Salvar</button>)}
                             </div>
                             <div>
                                 <ul id="mensagens-erro" style={{ color: "red" }}></ul>
