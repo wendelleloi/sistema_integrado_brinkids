@@ -170,6 +170,12 @@ class MainLayout extends React.Component {
                                     <span>Saida de Crianças</span>
                                 </a>
                             </li>
+                            <li>
+                                <a href="/Gavetas">
+                                <i className="glyphicon glyphicon-lock"></i>
+                                    <span>Gavetas</span>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>

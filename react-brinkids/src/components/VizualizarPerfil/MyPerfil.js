@@ -18,16 +18,15 @@ class MeuPerfil extends React.Component {
             list: [],
             //Funcionario selecionado para vizualizar o perfil
             perfilAtual: listaa[0],
-            //barra de busca
-            selectedSearch: '',
+           
+           
             //tipo da pagina 'Busca' ou 'Perfil'
             page: 'Perfil',
             //n tem uma função especifica mas o universo não aceita funcionar sem ele
             flut: true,
             //Aparecer as opçoes quando clikar em editar
             editar: false,
-            senhaNova: '',
-            senhaAtual: '',
+            
             //Perfil sendo editado
             perfilEdicao: listaa[0],
 
@@ -44,8 +43,8 @@ class MeuPerfil extends React.Component {
 
         }
         //funçoes para mudar os values e afins
-        this.ChangeSearch = this.ChangeSearch.bind(this);
-        this.SearchFuncionario = this.SearchFuncionario.bind(this);
+        
+       
         
         this.editavel = this.editavel.bind(this);
         this.changueObs = this.changueObs.bind(this);
@@ -62,8 +61,7 @@ class MeuPerfil extends React.Component {
        
         this.cancelar = this.cancelar.bind(this);
         this.changuePassword = this.changuePassword.bind(this);
-        this.changueSenha = this.changueSenha.bind(this);
-        this.changueSenhaAtual = this.changueSenhaAtual.bind(this);
+       
     }
     changuePassword(event) {
         this.setState({
@@ -141,22 +139,8 @@ class MeuPerfil extends React.Component {
         })
 
     }
-    SearchFuncionario(event) {
-        const lista = [];
-        this.setState({ list: [] });
-        this.state.listaFuncionarios.forEach(element => {
-
-            if (element.name.firstName == this.state.selectedSearch) {
-
-                lista.push(element);
-                this.setState({ list: lista });
-            }
-        });
-
-    }
-    ChangeSearch(event) {
-        this.setState({ selectedSearch: event.target.value });
-    }
+   
+    
     render() {
 
 
@@ -390,7 +374,7 @@ class MeuPerfil extends React.Component {
                                 {!this.state.editar && (
                                     <div style={{ textAlign: 'center' }}>
                                         <button onClick={this.editavel} className="btn btn-md botao botaoAvançar" > Editar</button>
-                                        <button onClick={this.voltar} className="btn btn-md botao botaoAvançar" > Voltar</button>
+                                       
                                         <button onClick={this.changuePassword} className="btn btn-md botao botaoAvançar" > Alterar Senha</button>
                                 
                                     </div>
@@ -408,46 +392,6 @@ class MeuPerfil extends React.Component {
                     </div>
                 </div>
 
-            );
-        }
-        if (this.state.page === 'Senha') {
-            return (
-                <div className="container-fluid" >
-                    <div className="sub-heard-part" >
-
-                        <ol className="breadcrumb m-b-0" >
-                            <li > < a href="/" > Home </a></li >
-                            <li > Vizualizar </li>
-                            <li > Perfil </li>
-                        </ol >
-                    </div>
-                    <div className="graph-visual" >
-                        <h3 className="inner-tittle" > Vizualizar Perfil Funcionario </h3>
-
-                        <div className="graph" >
-                            <h3 className="inner-tittle" > Mudar Senha</h3>
-                        </div>
-
-                    </div>
-                    <div className="col-md-12 col-sm-12 text-center">
-                        <div className="col-md-6 col-sm-12 text-center" >
-                            <div className="graph" style={{ padding: 10 + "px" }}>
-                                <h5 className="ltTitulo" style={{ color: 'red' }}><b> DIGITE A SENHA ATUAL </b></h5>
-                                <p><input type="password" value={this.state.senhaAtual} onChange={this.changueSenhaAtual} style={{ background: 'white', textAlign: 'center', fontSize: 125 + '%' }} /></p>
-                            </div>
-                            <br></br>
-                            <div className="graph" style={{ padding: 10 + "px" }}>
-                                <h5 className="ltTitulo" style={{ color: 'red' }}><b> DIGITE A NOVA SENHA </b></h5>
-                                <p><input type="password" value={this.state.senhaNova} onChange={this.changueSenha} style={{ background: 'white', textAlign: 'center', fontSize: 125 + '%' }} /></p>
-
-                            </div>
-                            <div className="graph" style={{ padding: 10 + "px" }}>
-                                <button onClick={() => this.setState({ page: 'Perfil', editar: false })} className="btn btn-md botao botaoAvançar" style={{}}> Alterar Senha</button>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
             );
         }
     }

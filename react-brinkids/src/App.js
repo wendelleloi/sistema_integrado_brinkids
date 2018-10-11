@@ -21,6 +21,7 @@ import MeuPerfil from './components/VizualizarPerfil/MyPerfil.js';
 import SaidaCrianca from './components/Saidas/SaidaCrianca.js';
 import EntradaAniversario from './components/Aniversario/EntradaAniversario.js';
 import Gerador from './components/geradorf/Gerador_fun\u00E7oes.js';
+import Gaveta from './components/Gavetas/Gavetas.js';
 
 const getBasename = () => {
   return `/${process.env.PUBLIC_URL.split('/').pop()}`;
@@ -138,7 +139,13 @@ class App extends React.Component {
                   path="/Gerador_funçoes"
                   layout={MainLayout}
                   component={Gerador}
-                />    
+                />
+                <LayoutRoute
+                  exact
+                  path="/Gavetas"
+                  layout={MainLayout}
+                  component={Gaveta}
+                />        
                                                                  
               <Redirect to="/" /> 
             </Switch>
