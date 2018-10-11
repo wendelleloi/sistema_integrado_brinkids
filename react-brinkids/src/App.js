@@ -118,7 +118,7 @@ class App extends React.Component {
             />
             <LayoutRoute
               exact
-              path="/Serviços"
+              path="/Servicos"
               layout={MainLayout}
               component={Servicos}
             />
@@ -137,7 +137,7 @@ class App extends React.Component {
             />
             <LayoutRoute
               exact
-              path="/Gerador_funçoes"
+              path="/Gerador_funcoes"
               layout={MainLayout}
               component={Gerador}
             />

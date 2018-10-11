@@ -147,7 +147,7 @@ class MainLayout extends React.Component {
                             </li>
                             <li id="menu-comunicacao" ><a href="/"><i className="fa fa-tags" aria-hidden="true"></i> <span>Serviços</span> <span className="fa fa-angle-double-right" style={{ float: "right" }}></span></a>
                                 <ul>
-                                    <li id="menu-mensagens" style={{ width: 120 + "px" }} ><a href="/Serviços">Entrada <i className="fa fa-angle-right" style={{ float: "right", marginRight: -8 + "px", marginTop: 2 + "px" }}></i></a></li>
+                                    <li id="menu-mensagens" style={{ width: 120 + "px" }} ><a href="/Servicos">Entrada <i className="fa fa-angle-right" style={{ float: "right", marginRight: -8 + "px", marginTop: 2 + "px" }}></i></a></li>
                                     <li id="menu-mensagens" style={{ width: 120 + "px" }} ><a href="/SaidaServicosExtra">Saída <i className="fa fa-angle-right" style={{ float: "right", marginRight: -8 + "px", marginTop: 2 + "px" }}></i></a></li>
                                 </ul>
                             </li>
@@ -159,7 +159,7 @@ class MainLayout extends React.Component {
                                 </a>
                             </li>
                             <li>
-                                <a href="/Gerador_funçoes">
+                                <a href="/Gerador_funcoes">
                                 <i className="glyphicon glyphicon-user"></i>
                                     <span>Gerenciador de Serviços</span>
                                 </a>

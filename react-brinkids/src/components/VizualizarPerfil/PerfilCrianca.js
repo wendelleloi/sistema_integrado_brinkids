@@ -26,21 +26,14 @@ class PerfilCrianca extends React.Component {
             flut: true,
             //Aparecer as opçoes quando clikar em editar
             editar: false,
-            senhaNova: '',
-            senhaAtual: '',
+            
             //Perfil sendo editado
             perfilEdicao: [],
 
             obs: '',
-            email: '',
-            phone: '',
-            estado: '',
-            pais: '',
-            bairro: '',
-            cep: '',
-            cidade: '',
+           
             numero: '',
-            endereco: '',
+            
 
         }
         //funçoes para mudar os values e afins
@@ -52,42 +45,22 @@ class PerfilCrianca extends React.Component {
         this.editavel = this.editavel.bind(this);
 
         this.changueObs = this.changueObs.bind(this);
-        this.changueCep = this.changueCep.bind(this);
-        this.changueEndereco = this.changueEndereco.bind(this);
-        this.changueBairro = this.changueBairro.bind(this);
-        this.changueCidade = this.changueCidade.bind(this);
-        this.changueEstado = this.changueEstado.bind(this);
-        this.changuePais = this.changuePais.bind(this);
+       
         this.changueNumero = this.changueNumero.bind(this);
-        this.changueEmail = this.changueEmail.bind(this);
-        this.changuePhone = this.changuePhone.bind(this);
+        
 
         this.salvar = this.salvar.bind(this);
         this.voltar = this.voltar.bind(this);
         this.cancelar = this.cancelar.bind(this);
 
-        this.changuePassword = this.changuePassword.bind(this);
-        this.changueSenha = this.changueSenha.bind(this);
-        this.changueSenhaAtual = this.changueSenhaAtual.bind(this);
+        
     }
-    changuePassword(event) {
-        this.setState({
-            page: 'Senha',
-        })
-    }
+    
     //lembrar de terminar as funçoes changue
     changueObs(event) { this.setState({ obs: event.target.value }) }
-    changueBairro(event) { this.setState({ bairro: event.target.value }) }
-    changueCep(event) { this.setState({ cep: event.target.value }) }
-    changueEndereco(event) { this.setState({ endereco: event.target.value }) }
-    changueCidade(event) { this.setState({ cidade: event.target.value }) }
-    changueEstado(event) { this.setState({ estado: event.target.value }) }
-    changuePais(event) { this.setState({ pais: event.target.value }) }
+   
     changueNumero(event) { this.setState({ numero: event.target.value }) }
-    changueEmail(event) { this.setState({ email: event.target.value }) }
-    changuePhone(event) { this.setState({ phone: event.target.value }) }
-    changueSenha(event) { this.setState({ senhaNova: event.target.value }) }
-    changueSenhaAtual(event) { this.setState({ senhaAtual: event.target.value }) }
+    
     //funçao que salva apos o editar
     salvar(event) {
         this.state.perfilAtual.observations = this.state.obs,
@@ -143,14 +116,7 @@ class PerfilCrianca extends React.Component {
         this.setState({
             obs: this.state.perfilEdicao.observations,
             numero: this.state.perfilEdicao.address.number,
-            estado: this.state.perfilEdicao.address.state,
-            bairro: this.state.perfilEdicao.address.district,
-            phone: this.state.perfilEdicao.phone,
-            cidade: this.state.perfilEdicao.address.city,
-            cep: this.state.perfilEdicao.address.cep,
-            email: this.state.perfilEdicao.email,
-            endereco: this.state.perfilEdicao.address.street,
-            pais: this.state.perfilEdicao.address.country,
+            
         })
 
     }
@@ -274,9 +240,10 @@ class PerfilCrianca extends React.Component {
 
 
                             </h3>
-                            <div className="col-md-12 col-sm-12 text-center">
+                            <div className="row">
+                            <div className="col-md-4 col-sm-12 text-center">
                                 <div className="graph" style={{ padding: 10 + "px" }}>
-                                    <h5 className="ltTitulo"><b> Sua Foto: </b></h5>
+                                   
                                     {this.state.editar && (
                                         <div>
                                             <button className="btn btn-md botao botaoAvançar" style={{ background: ' #2ab7ec' }}><label>
@@ -290,11 +257,9 @@ class PerfilCrianca extends React.Component {
 
                                 </div>
                                 <br></br>
+                               
                             </div>
-
-                            <div className="row">
-
-                                <div className="col-md-12 col-sm-12">
+                            <div className="col-md-8 col-sm-12">
                                     <div className="graph" style={{ padding: 10 + "px" }}>
                                         <h5 className="ltTitulo"><b> Nome: </b></h5>
                                         <p>{this.state.perfilAtual.name.firstName}</p>
@@ -304,18 +269,23 @@ class PerfilCrianca extends React.Component {
                                         <h5 className="ltTitulo"><b> SOBRENOME: </b></h5>
                                         <p>{this.state.perfilAtual.name.surName}</p>
                                     </div>
-                                </div>
-                            </div>
-
-                            <br></br>
-
-                            <div className="row">
-                                <div className="col-md-12 col-sm-6 col-xs-12" >
+                                    <br></br>
                                     <div className="graph" style={{ padding: 10 + "px" }}>
                                         <h5 className="ltTitulo"><b>  Nnumero de Registro: </b> </h5>
                                         <p>{this.state.perfilAtual.cpf} </p>
                                     </div>
                                 </div>
+                                
+                            </div>
+                            <div className="row">
+
+                               
+                            </div>
+
+                            <br></br>
+
+                            <div className="row">
+                                
 
                             </div>
 

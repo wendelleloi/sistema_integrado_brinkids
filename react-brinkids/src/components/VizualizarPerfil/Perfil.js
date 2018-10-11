@@ -17,11 +17,11 @@ class Perfil extends React.Component {
             //lista de funcionarios apos a busca pelo nome
             list: [],
             //Funcionario selecionado para vizualizar o perfil
-            perfilAtual: listaa[0],
+            perfilAtual: [],
             //barra de busca
             selectedSearch: '',
             //tipo da pagina 'Busca' ou 'Perfil'
-            page: 'Perfil',
+            page: 'Busca',
             //n tem uma função especifica mas o universo não aceita funcionar sem ele
             flut: true,
             //Aparecer as opçoes quando clikar em editar
@@ -325,7 +325,7 @@ class Perfil extends React.Component {
                                 <div className="col-md-6 col-sm-6 col-xs-12" >
                                     <div className="graph" style={{ padding: 10 + "px" }}>
                                         <h5 className="ltTitulo"><b>  RG: </b> </h5>
-                                        <p> {this.state.perfilAtual.rg} </p>
+                                        <p> {this.state.perfilAtual.rgs} </p>
                                     </div>
                                 </div>
                             </div>
@@ -483,11 +483,11 @@ class Perfil extends React.Component {
 
                                         <h5 className="ltTitulo" ><b>Carteira de trabalho:</b>  </h5>
 
-                                        <p><b>Numero:</b> {this.state.perfilAtual.workPortfolio.number}d</p>
-                                        <p><b>Series:</b> {this.state.perfilAtual.workPortfolio.series}d</p>
-                                        <p><b>Estado:</b> {this.state.perfilAtual.workPortfolio.state}d</p>
-                                        <p><b>PIS_PASEP:</b> {this.state.perfilAtual.workPortfolio.PIS_PASEP}d</p>
-                                        <p><b>Data de Emissão:</b>{this.state.perfilAtual.workPortfolio.dateIssue}d</p>
+                                        <p><b>Numero:</b> {this.state.perfilAtual.workPortfolio.number}</p>
+                                        <p><b>Series:</b> {this.state.perfilAtual.workPortfolio.series}</p>
+                                        <p><b>Estado:</b> {this.state.perfilAtual.workPortfolio.state}</p>
+                                        <p><b>PIS_PASEP:</b> {this.state.perfilAtual.workPortfolio.PIS_PASEP}</p>
+                                        <p><b>Data de Emissão:</b>{this.state.perfilAtual.workPortfolio.dateIssue}</p>
                                         <p><b>Lugar de Emissão:</b> {this.state.perfilAtual.workPortfolio.placeIssued}</p>
                                     </div>
                                 </div>
@@ -496,10 +496,10 @@ class Perfil extends React.Component {
 
                                         <h5 className="ltTitulo" ><b>Título de Eleitor:</b>  </h5>
 
-                                        <p><b>Numero:</b> {this.state.perfilAtual.electionTitleo.number}d</p>
-                                        <p><b>Zona:</b> {this.state.perfilAtual.electionTitle.zone}d</p>
-                                        <p><b>Seção:</b> {this.state.perfilAtual.electionTitle.section}d</p>
-                                        <p><b>Estado:</b> {this.state.perfilAtual.electionTitle.state}d</p>
+                                        <p><b>Numero:</b> {this.state.perfilAtual.electionTitle.number}</p>
+                                        <p><b>Zona:</b> {this.state.perfilAtual.electionTitle.zone}</p>
+                                        <p><b>Seção:</b> {this.state.perfilAtual.electionTitle.section}</p>
+                                        <p><b>Estado:</b> {this.state.perfilAtual.electionTitle.state}</p>
                                         
                                     </div>
                                 </div>
@@ -508,8 +508,8 @@ class Perfil extends React.Component {
 
                                         <h5 className="ltTitulo" ><b>Registro Geral:</b>  </h5>
 
-                                        <p><b>Orgão Emissor:</b> {this.state.perfilAtual.rg.issuingBody}d</p>
-                                        <p><b>Data de Emissão:</b> {this.state.perfilAtual.rg.dateIssue}d</p>             
+                                        <p><b>Orgão Emissor:</b> {this.state.perfilAtual.rg.issuingBody}</p>
+                                        <p><b>Data de Emissão:</b> {this.state.perfilAtual.rg.dateIssue}</p>             
                                         <p><b>Estado:</b> {this.state.perfilAtual.rg.state}d</p>
                                         
                                     </div>
@@ -524,9 +524,9 @@ class Perfil extends React.Component {
 
                                         <h5 className="ltTitulo" ><b>Reservista:</b>  </h5>
 
-                                        <p><b>Numero:</b> {this.state.perfilAtual.militaryReservist.number}d</p>
-                                        <p><b>Series:</b> {this.state.perfilAtual.militaryReservist.series}d</p>
-                                        <p><b>Categoría:</b> {this.state.perfilAtual.militaryReservisto.category}d</p>
+                                        <p><b>Numero:</b> {this.state.perfilAtual.militaryReservist.number}</p>
+                                        <p><b>Series:</b> {this.state.perfilAtual.militaryReservist.series}</p>
+                                        <p><b>Categoría:</b> {this.state.perfilAtual.militaryReservist.category}</p>
                                        
                                     </div>
                                 </div>
@@ -535,11 +535,11 @@ class Perfil extends React.Component {
 
                                         <h5 className="ltTitulo" ><b>Passaporte:</b>  </h5>
 
-                                        <p><b>Numero:</b> {this.state.perfilAtual.passport.number}d</p>
-                                        <p><b>Tipo:</b> {this.state.perfilAtual.passport.type}d</p>
-                                        <p><b>Continente de Emissão:</b> {this.state.perfilAtual.passport.issuingCountry}d</p>
-                                        <p><b>Data de Emissão:</b> {this.state.perfilAtual.passport.dateIssue}d</p>
-                                        <p><b>Data de Expiração:</b> {this.state.perfilAtual.passport.expirationDate}d</p>
+                                        <p><b>Numero:</b> {this.state.perfilAtual.passport.number}</p>
+                                        <p><b>Tipo:</b> {this.state.perfilAtual.passport.type}</p>
+                                        <p><b>Continente de Emissão:</b> {this.state.perfilAtual.passport.issuingCountry}</p>
+                                        <p><b>Data de Emissão:</b> {this.state.perfilAtual.passport.dateIssue}</p>
+                                        <p><b>Data de Expiração:</b> {this.state.perfilAtual.passport.expirationDate}</p>
                                         
                                     </div>
                                 </div>
@@ -548,12 +548,12 @@ class Perfil extends React.Component {
 
                                         <h5 className="ltTitulo" ><b>CNH:</b>  </h5>
 
-                                        <p><b>Registro:</b> {this.state.perfilAtual.cnh.record}d</p>
-                                        <p><b>Categoria:</b> {this.state.perfilAtual.cnh.category}d</p>             
-                                        <p><b>Data de Expiração:</b> {this.state.perfilAtual.cnh.expirationDate}d</p>
-                                        <p><b>Comentários:</b> {this.state.perfilAtual.cnh.comments}d</p>
-                                        <p><b>Local de Emissão:</b> {this.state.perfilAtual.cnh.placeIssue}d</p>
-                                        <p><b>Data de Emissão:</b> {this.state.perfilAtual.cnh.dateIssue }d</p>
+                                        <p><b>Registro:</b> {this.state.perfilAtual.cnh.record}</p>
+                                        <p><b>Categoria:</b> {this.state.perfilAtual.cnh.category}</p>             
+                                        <p><b>Data de Expiração:</b> {this.state.perfilAtual.cnh.expirationDate}</p>
+                                        <p><b>Comentários:</b> {this.state.perfilAtual.cnh.comments}</p>
+                                        <p><b>Local de Emissão:</b> {this.state.perfilAtual.cnh.placeIssue}</p>
+                                        <p><b>Data de Emissão:</b> {this.state.perfilAtual.cnh.dateIssue }</p>
                                         
                                     </div>
                                 </div>
