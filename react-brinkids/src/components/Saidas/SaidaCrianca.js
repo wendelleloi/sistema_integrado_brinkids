@@ -390,7 +390,7 @@ class SaidaCrianca extends React.Component {
                                 <div className="col-md-4 col-sm-12 com-xs-12">
                                     <div className="graph">
                                         <h5 className="ltTitulo"><b>Tempo:</b></h5>
-                                        <p>{this.state.NameAdult}</p>
+                                        <p>{this.state.TimeC}</p>
                                     </div>
                                 </div>
                                 <div className="col-md-4 col-sm-12 com-xs-12">

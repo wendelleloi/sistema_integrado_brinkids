@@ -239,7 +239,6 @@ class Passport extends React.Component {
             arrayfinal:lista,
         })
         alert("Cadastrado");
-        console.log(this.state.arrayfinal);
     }
 
     // Encaminha para a tela VI
@@ -249,8 +248,34 @@ class Passport extends React.Component {
         })
         alert("Cadastrado");
         console.log(this.state.arrayfinal);
+        this.TheEnd();
     }
-    // FUNÇOES DO BOTÃO AVANÇAR - FIM   
+    // FUNÇOES DO BOTÃO AVANÇAR - FIM
+
+    //Essa parte é de responsabilidade de Marcos Paulo, talvez isso dê errado, mas tentá-lo-ei...
+    //Só quero pegar o que preciso na rota.
+    //O new Date().getTime() recebe o valor em milisegundos, por isso, dividindo por 60000 converto em minutos.
+    //Começando o formulário para enviar no JSON:
+    /*FUNCAO CADASTRA ADULTO*/
+    TheEnd= (event) => {
+        var formData = new FormData();
+
+        formData.append('time', String(moment()/(60000)))
+        formData.append('price', String(5))
+        //Fim do formulário;
+        axios.post('/passport', formData)
+        .then(function (response) {
+            console.log(response)
+            alert("Cadastro Finalizado")
+            window.location.href = '/';
+        }).catch(function (error) {
+            console.log(error)//LOG DE ERRO
+            console.log("Status do erro: " + error.response.status) //HTTP STATUS CODE
+            console.log("Dados do erro: " + error.response.data) //HTTP STATUS TEXT
+            alert("Erro ao Cadastar: " + error.response.status + " --> " + error.response.data);
+        })
+        //Fim da parte Marcos.
+    }
 
     // FUNÇOES DO BOTÃO VOLTART TELA - INICIO 
     // Voltar par Tela I
@@ -745,7 +770,7 @@ class Passport extends React.Component {
                     />
                     <div className="text-center">
                         <a className="btn btn-md botao" href="/">Cancelar</a>                        
-                        <button className="btn btn-md botao botaoAvançar" onClick={this.comprovante}> Finalizar </button>
+                        <button className="btn btn-md botao botaoAvançar" onClick={this.Comprovante}> Finalizar </button>
                     </div>
                 </div>
             )

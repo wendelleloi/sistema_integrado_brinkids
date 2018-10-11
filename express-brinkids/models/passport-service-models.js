@@ -12,7 +12,7 @@ const passportServiceSchema = new mongoose.Schema({
 	},
 	initialTime: String,
 	finalTime: String,
-  price: String,
+	price: String,
 )};
 
 mongoose.connect(`mongodb://localhost/${config.database}`);

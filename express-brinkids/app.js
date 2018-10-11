@@ -20,7 +20,7 @@ const child = require('./routes/child-router');
 const employees = require('./routes/employees-router');
 const product = require('./routes/product-router');
 const extraServices = require('./routes/extra-services-router');
-const passport = require('./routes/passport-router')
+const passport = require('./routes/passport-router');
 
 // Instanciando o objeto do express
 const app = express();
