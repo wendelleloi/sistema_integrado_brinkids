@@ -2,8 +2,8 @@ import React from 'react';
 import '../../assets/style/bootstrap.min.css';
 import '../../assets/style/font-awesome.css';
 import TypesInput from '../TypesInput.js';
-import './estilo.css'
-
+import './estilo.css';
+import axios from 'axios';
 class Servico extends React.Component {
     constructor(props) {
         super(props);
@@ -16,7 +16,7 @@ class Servico extends React.Component {
             Text: 0,
             Quant: '',
             lista: [],
-            
+
         }
         this.changueUnidade = this.changueUnidade.bind(this);
         this.changueQuant = this.changueQuant.bind(this);
@@ -28,6 +28,18 @@ class Servico extends React.Component {
         this.editar = this.editar.bind(this);
         this.Salvar2 = this.Salvar2.bind(this);
 
+    }
+    componentWillMount() {
+        //aki deveria pegar a lista de serviços mas por algum motivo n funciona
+        axios.get('/extraServices')
+            .then((response) => {
+
+                
+                console.log(response.data);
+                this.setState({ lista: response.data });
+
+            })
+            .catch((err) => console.log(err));
     }
     changueTipo(event) {
         this.setState({
@@ -52,31 +64,31 @@ class Servico extends React.Component {
     Salvar(event) {
         let listaTemporaria = this.state.lista;
         listaTemporaria.push({
-            
-            name:this.state.Nome,
-            type:this.state.Tipo,
-            unidade:this.state.Quant,
-            preco:this.state.Text,
+
+            name: this.state.Nome,
+            type: this.state.Tipo,
+            unidade: this.state.Quant,
+            preco: this.state.Text,
 
         })
         this.setState({
-            lista:listaTemporaria,
-            page:'Lista',
+            lista: listaTemporaria,
+            page: 'Lista',
             Nome: '',
             Tipo: 'Serviço',
             Text: 0,
             Quant: '',
         })
     }
-    Salvar2(event){
+    Salvar2(event) {
         let listaTemporaria = this.state.lista;
         listaTemporaria[this.state.indice].name = this.state.Nome;
         listaTemporaria[this.state.indice].preco = this.state.Text;
         listaTemporaria[this.state.indice].type = this.state.Tipo;
         listaTemporaria[this.state.indice].unidade = this.state.Quant;
         this.setState({
-            lista:listaTemporaria,
-            page:'Lista',
+            lista: listaTemporaria,
+            page: 'Lista',
             Nome: '',
             Tipo: 'Serviço',
             Text: 0,
@@ -84,30 +96,30 @@ class Servico extends React.Component {
             indice: '',
         })
     }
-    excluir(event,indice){
-            let listaTemporaria = this.state.lista;
-            listaTemporaria.splice(event,1);
-            this.setState({
-                lista:listaTemporaria,
-            })
-            console.log(event);
+    excluir(event, indice) {
+        let listaTemporaria = this.state.lista;
+        listaTemporaria.splice(event, 1);
+        this.setState({
+            lista: listaTemporaria,
+        })
+        console.log(event);
 
     }
-    editar(event){
+    editar(event) {
         console.log(this.state.lista[event].preco);
         this.setState({
             Nome: this.state.lista[event].name,
             Tipo: this.state.lista[event].type,
             Text: this.state.lista[event].preco,
             Quant: this.state.lista[event].unidade,
-            page:'Editar',
+            page: 'Editar',
             indice: event,
         })
     }
-    Cancelar(event){
+    Cancelar(event) {
         this.setState({
-            
-            page:'Lista',
+
+            page: 'Lista',
             Nome: '',
             Tipo: 'Serviço',
             Text: 0,
@@ -157,8 +169,8 @@ class Servico extends React.Component {
                                                 <td>{servico.type}</td>
                                                 <td>{servico.unidade}</td>
                                                 <td>{servico.preco}</td>
-                                                <td><button onClick={()=> this.editar(indice)}><span className="glyphicon">&#x270f;</span></button> <button onClick={()=>this.excluir(indice)}><span className="glyphicon">&#xe014;</span></button></td>
-                                                
+                                                <td><button onClick={() => this.editar(indice)}><span className="glyphicon">&#x270f;</span></button> <button onClick={() => this.excluir(indice)}><span className="glyphicon">&#xe014;</span></button></td>
+
                                             </tr>
                                         );
                                     })}
