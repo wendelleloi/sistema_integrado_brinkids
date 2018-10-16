@@ -123,6 +123,7 @@ class SaidaCrianca extends React.Component {
 
         this.setState({ confirmaCrianca: this.state.confirmaCrianca });
     }
+
     ProximaTela = (event) =>{
         event.preventDefault();
         var erros = [];
@@ -153,8 +154,41 @@ class SaidaCrianca extends React.Component {
             });
         }
     }
+    ProximaCrianca = () =>{
+        var i = this.state.Interacao;
+        if(i =! this.state.CriancasSelecionadas.length){ 
+            this.setState({
+                NomeC: this.state.CriancasSelecionadas[i].children.name,
+                Produto: this.state.CriancasSelecionadas[i].service,
+                PhotoC: this.state.CriancasSelecionadas[i].photo,
+                IdadeC: this.state.CriancasSelecionadas[i].children.birthday,
+                TempoC: this.state.CriancasSelecionadas[i].time,
+                ObsC: this.state.CriancasSelecionadas[i].children.observations,
+                RetC: this.state.CriancasSelecionadas[i].children.restrictions,
+                Interacao: (this.state.Interacao + 1)
+            })
+        }
+        else{
+            this.setState({
+                page: "FinalizarSaida"
+            })
+        }   
+    }
+
     VerificaDesconto = (resp) => {
         console.log("Estou entrando");
+        axios.get(`/discount/filter/${resp}`)
+            .then((response) => {
+                console.log("Codigo Validado");
+                console.log(response.data);
+                alert("Codigo é Valido");
+            }).catch((error) => {
+                console.log("Não deu certo");
+                console.log(error)//LOG DE ERRO
+                // console.log("Status do erro: " + error.response.status) //HTTP STATUS CODE
+                // console.log("Dados do erro: " + error.response.data) //HTTP STATUS TEXT
+                // alert("Erro na Busca: " + error.response.status + " --> " + error.response.data);
+            })
     }
 
 
@@ -182,30 +216,6 @@ class SaidaCrianca extends React.Component {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <th style={{ fontSize: 20 + 'px' }}>1</th>
-                                            <td className="td-table text-center">João</td>
-                                            <td className="td-table text-center">(84) 996778800</td>
-                                            <td>
-                                                <button className="btn botao btn-sm" onClick={() => this.Selecionar("João", "abacate")}><i class="fa fa-check"></i></button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th style={{ fontSize: 20 + 'px' }}>2</th>
-                                            <td className="td-table text-center">Maria</td>
-                                            <td className="td-table text-center">(84) 900000000</td>
-                                            <td>
-                                                <button className="btn botao btn-sm" onClick={() => this.Selecionar("maria", "abacate")}><i class="fa fa-check"></i></button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th style={{ fontSize: 20 + 'px' }}>3</th>
-                                            <td className="td-table text-center">Firmino</td>
-                                            <td className="td-table text-center">(84) 999798909</td>
-                                            <td>
-                                                <button className="btn botao btn-sm" onClick={() => this.Selecionar("firmino", "abacate")}><i class="fa fa-check"></i></button>
-                                            </td>
-                                        </tr>
                                         {/* {this.state.listAdultos.map((resp, indice) => {
                                             return (
                                                 <tr key={desconto._id}>
@@ -286,41 +296,14 @@ class SaidaCrianca extends React.Component {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <th style={{ fontSize: 20 + 'px' }}>1</th>
-                                                <td className="td-table text-center">Mariazinha</td>
-                                                <td className="td-table text-center">Aniversario</td>
-                                                <td className="td-table text-center"> 10/10/2018 - 12:00</td>
-                                                <td>
-                                                    <input type="checkbox" name="selectchild" value="true" onClick={() => this.selecionaCrianca("abacate")} />
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th style={{ fontSize: 20 + 'px' }}>2</th>
-                                                <td className="td-table text-center">Maria</td>
-                                                <td className="td-table text-center">Aniversario</td>
-                                                <td className="td-table text-center"> 10/10/2018 - 12:00</td>
-                                                <td>
-                                                    <input type="checkbox" name="selectchild" value="true" onClick={() => this.selecionaCrianca("abacate")} />
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th style={{ fontSize: 20 + 'px' }}>3</th>
-                                                <td className="td-table text-center">Firmino</td>
-                                                <td className="td-table text-center">Aniversario</td>
-                                                <td className="td-table text-center"> 10/10/2018 - 12:00</td>
-                                                <td>
-                                                    <input type="checkbox" name="selectchild" value="true" onClick={() => this.selecionaCrianca("abacate")} />
-                                                </td>
-                                            </tr>
-                                            {/* {this.state.listChianca.map((resp, indice) => {
+                                            {/* {this.state.listCrianca.map((resp, indice) => {
                                             return (
                                                 <tr key={desconto._id}>
                                                     <th scope="row">{(indice + 1)}</th>
                                                     <td > {resp.children.name} </td>
                                                     <td >{resp.service}</td>
                                                     <td>{resp.time}
-                                                    <td ><input type="checkbox" name="selectchild" value="true" onClick={() => this.selecionaCrianca(findChild._id)} /></td>
+                                                    <td ><input type="checkbox" name="selectchild" value="true" onClick={() => this.selecionaCrianca(resp.children.id)} /></td>
                                                 </tr>
                                             );
                                         })} */}
@@ -375,13 +358,13 @@ class SaidaCrianca extends React.Component {
                                 <div className="col-md-6 col-sm-12">
                                     <div className="graph" style = {{ padding:10 + "px"}}>
                                         <h5 className = "ltTitulo"><b> Observações: </b></h5>
-                                        <p>{this.state.ObsAdult}</p>
+                                        <p>{this.state.ObsC}</p>
                                     </div>
                                 </div>
                                 <div className="col-md-6 col-sm-12">
                                     <div className="graph" style = {{ padding:10 + "px"}}>
                                         <h5 className = "ltTitulo"><b> Restrições: </b></h5>
-                                        <p>{this.state.ObsAdult}</p>
+                                        <p>{this.state.RetC}</p>
                                     </div>
                                 </div>
                             </div>
@@ -416,6 +399,11 @@ class SaidaCrianca extends React.Component {
                                 </div>
                             </form>
                         </div>
+                        <div className="text-center">
+                            <a className="btn btn-md botao" href="/">Cancelar</a>
+                            <button className="btn btn-md botao botaoAvançar" onClick={this.ProximaCrianca}>Proxima Crianca</button>
+                            <ul id="mensagens-erro" style={{color: "red"}}></ul>
+                        </div>  
                     </div>
                 </div>
             )
